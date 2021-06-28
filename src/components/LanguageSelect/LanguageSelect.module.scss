@@ -1,21 +1,25 @@
 .language-list {
   position: absolute;
   top: 50px;
-  background-color: white;
+
   width: 50px;
-  text-align: center;
+
   font-size: 3rem;
+  text-align: center;
+
+  background-color: white;
 
 }
 
 .language-list > li:hover {
+  background-color: rgb(192, 180, 180);
   
   cursor: pointer;
-  background-color: rgb(192, 180, 180);
 }
 
 .select-wrapper {
   position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
