@@ -8,10 +8,13 @@
   text-align: center;
 
   background-color: white;
+  
 
 }
 
 .language-list > li:hover {
+  font-weight: bold;
+
   background-color: rgb(192, 180, 180);
   
   cursor: pointer;
@@ -23,4 +26,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.langBtn {
+  font-weight: bold;
+
 }

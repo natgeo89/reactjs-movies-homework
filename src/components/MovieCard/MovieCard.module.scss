@@ -1,0 +1,29 @@
+$gray: rgb(212, 209, 209);
+
+.wrapper {
+  color: $gray;
+  font-size: 2rem;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0, 0.2);
+    z-index: 1;
+  }
+}
+
+.image {
+  width: 100%;
+  max-width: 250px;
+
+  border-radius: 5px;
+  z-index: -1;
+}
+
+.genres {
+  display: flex;  
+}
+
+.genres > li:not(:first-child) {
+  margin-left: 5px;
+}

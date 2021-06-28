@@ -5,10 +5,12 @@ import styles from './Button.module.scss';
 interface ButtonProps {
   primary?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, primary }) => {
+const Button: React.FC<ButtonProps> = ({ children, onClick, primary, className }) => {
   const classes = classNames(
+    className,
     styles.btn,
     { [styles.primary]: primary },
   );

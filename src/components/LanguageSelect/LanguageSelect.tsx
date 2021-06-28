@@ -18,7 +18,7 @@ const LanguageSelect: React.FC = () => {
 
   return (
     <div className={styles["select-wrapper"]}>
-      <Button onClick={toggleLanguage}>{currentLang}</Button>
+      <Button onClick={toggleLanguage} className={styles.langBtn}>{currentLang}</Button>
       {isSelectOpen && (
         <ul className={styles["language-list"]}>
           {langArr.map((lang) => (
