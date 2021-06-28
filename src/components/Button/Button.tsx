@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 
 interface ButtonProps {
   primary?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({ children, onClick, primary }) => {
