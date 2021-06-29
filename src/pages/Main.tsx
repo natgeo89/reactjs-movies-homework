@@ -14,8 +14,9 @@ function Main() {
       <main className={styles.wrapper}>
         <TabBar />
         <ul className={styles.movies_container}>
-          {Array.from(Array(20), () => (
+          {Array.from(Array(20), (item, index) => (
             <MovieCard
+              key={index}
               rating={8.8}
               img={img}
               title={"Movie Title"}
