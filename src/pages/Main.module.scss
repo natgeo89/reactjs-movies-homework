@@ -1,5 +1,12 @@
 .wrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
   background-color: rgb(41, 38, 38);
+  // align-items: center;
+  // justify-content: center;
 }
 
 .movies_container {
@@ -8,5 +15,5 @@
   gap: 30px;
   align-items: center;
   justify-content: center;
-  padding: 50px;
+  padding: 60px;
 }

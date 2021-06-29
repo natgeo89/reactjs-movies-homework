@@ -1,20 +1,24 @@
 import React from "react";
 import styles from "./MovieCard.module.scss";
+import icon from './img/play_icon.svg';
 
 interface MovieCardProps {
   img: string;
   title: string;
   genres: string[];
+  rating: number;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ img, title, genres }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ img, rating, title, genres }) => {
   return (
-    <div className={styles.wrapper}>
-      <img src={img} className={styles.image} alt={"film"} />
-      <div>{title}</div>
-      <div className={styles.genres}>
-        {genres.join(' ')}
+    <div className={styles.card_wrapper}>
+      <div className={styles.rating}>{rating}</div>
+      <div className={styles.img_wrapper}>
+        <img src={img} className={styles.image} alt={"film"} />
+        <img src={icon} width='50px' className={styles.icon} alt={"icon"} />
       </div>
+      <div>{title}</div>
+      <div className={styles.genres}>{genres.join(" ")}</div>
     </div>
   );
 };

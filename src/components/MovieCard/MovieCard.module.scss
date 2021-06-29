@@ -1,27 +1,65 @@
 $gray: rgb(212, 209, 209);
+$green: #17cf4b;
 
-.wrapper {
-  color: $gray;
-  font-size: 2rem;
+.card_wrapper {
   position: relative;
 
+  color: $gray;
+  font-size: 2rem;
+  &:hover .image {
+    filter: brightness(40%);
+
+    transition: 0.4s;
+  }
+  &:hover .icon {
+    display: block;
+  }
   &:hover {
     cursor: pointer;
-    background-color: rgba(0,0,0, 0.2);
-    z-index: 1;
   }
+}
+
+.rating {
+  position: absolute;
+  top: 10px;
+  left: -5px;
+  z-index: 10;
+
+  width: 40px;
+
+  color: white;
+  text-align: center;
+
+  background-color: $green;
+  border-radius: 5px;
+}
+
+.img_wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.icon {
+  position: absolute;
+
+  display: none;
 }
 
 .image {
   width: 100%;
   max-width: 250px;
-
+  
   border-radius: 5px;
-  z-index: -1;
+
+  transition: 0.4s;
 }
 
 .genres {
-  display: flex;  
+  display: flex;
 }
 
 .genres > li:not(:first-child) {

@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import TabBar from "../components/TabBar";
 import MovieCard from "../components/MovieCard";
+import Pagination from "../components/Pagination";
 
 import styles from "./Main.module.scss";
 
@@ -15,12 +16,14 @@ function Main() {
         <ul className={styles.movies_container}>
           {Array.from(Array(20), () => (
             <MovieCard
+              rating={8.8}
               img={img}
               title={"Movie Title"}
               genres={["genre1", "genre2"]}
             />
           ))}
         </ul>
+        <Pagination count={5} />
       </main>
     </>
   );

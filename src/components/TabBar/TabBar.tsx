@@ -12,7 +12,7 @@ const TabBar: React.FC = () => {
   }
 
   return (
-    <div className={styles["tabs-wrapper"]}>
+    <nav className={styles["tabs-wrapper"]}>
       {tabsArr.map((tab, index) => {
         return tab === activeTab ? (
           <Tab key={index} label={tab} active handleClick={handleClick} />
@@ -20,7 +20,7 @@ const TabBar: React.FC = () => {
           <Tab key={index} label={tab} handleClick={handleClick} />
         );
       })}
-    </div>
+    </nav>
   );
 };
 
