@@ -4,6 +4,8 @@ $green: #17cf4b;
 .card_wrapper {
   position: relative;
 
+  max-width: 250px;
+
   color: $gray;
   font-size: 2rem;
   &:hover .image {
@@ -56,12 +58,4 @@ $green: #17cf4b;
   border-radius: 5px;
 
   transition: 0.4s;
-}
-
-.genres {
-  display: flex;
-}
-
-.genres > li:not(:first-child) {
-  margin-left: 5px;
 }

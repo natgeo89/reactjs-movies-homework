@@ -2,14 +2,14 @@ import React from "react";
 
 import LanguageSelect from "./LanguageSelect";
 
-import { Story, Meta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+
 
 export default {
   component: LanguageSelect,
   title: "Components/LanguageSelect",
-} as Meta;
+} as ComponentMeta<typeof LanguageSelect>;
 
-const Template: Story = (args) => <LanguageSelect {...args} />;
+const Template: ComponentStory<typeof LanguageSelect> = (args) => <LanguageSelect {...args} />;
 
 export const Simple = Template.bind({});
-

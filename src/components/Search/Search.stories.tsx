@@ -4,15 +4,14 @@ import React from 'react';
 
 import Search from './Search';
 
-import { Story, Meta } from '@storybook/react';
-import { SearchProps } from './Search';
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
   component: Search,
   title: 'Components/Search',
-} as Meta;
+} as ComponentMeta<typeof Search>;
 
-const Template: Story<SearchProps> = (args) => <Search {...args} />;
+const Template: ComponentStory<typeof Search> = (args) => <Search {...args} />;
 
 export const Simple = Template.bind({});
 Simple.args = {

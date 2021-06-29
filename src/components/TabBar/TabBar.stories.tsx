@@ -2,14 +2,15 @@ import React from "react";
 
 import TabBar from "./TabBar";
 
-import { Story, Meta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+
 
 export default {
   component: TabBar,
   title: "Components/TabBar",
-} as Meta;
+} as ComponentMeta<typeof TabBar>;
 
-const Template: Story = (args) => <TabBar {...args} />;
+const Template: ComponentStory<typeof TabBar> = (args) => <TabBar {...args} />;
 
 export const Active = Template.bind({});
 
