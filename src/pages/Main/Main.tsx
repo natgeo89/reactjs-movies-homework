@@ -1,7 +1,7 @@
-import Header from "../components/Header";
-import TabBar from "../components/TabBar";
-import MovieCard from "../components/MovieCard";
-import Pagination from "../components/Pagination";
+import Header from "../../components/Header";
+import TabBar from "../../components/TabBar";
+import MovieCard from "../../components/MovieCard";
+import Pagination from "../../components/Pagination";
 
 import styles from "./Main.module.scss";
 
