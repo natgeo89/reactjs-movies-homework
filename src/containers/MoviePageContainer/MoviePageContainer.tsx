@@ -1,16 +1,8 @@
 import React, {FC, ReactElement} from "react";
+import { ImovieInfo } from "../../types/movie";
 
 import { movieInfo } from "../../__mocks__/movie.mock";
-
-interface ImovieInfo {
-  backdrop_path: string ;
-  revenue: number;
-  overview: string;
-  release_date: string;
-  genres: {id: number; name: string;}[];
-  runtime: number | null;
-  title: string;
-}
+ 
 
 interface MoviePageContainerProps {
   children(movieInfo: ImovieInfo): ReactElement;

@@ -1,6 +1,8 @@
 import React, {FC, ReactElement} from "react";
+import { IGenres, IMovieCard } from "../../types/movie";
 
-import { actorData, actorPhotos, genres, known_by } from "../../__mocks__/actor.mock";
+import { actorData, actorPhotos, known_by } from "../../__mocks__/actor.mock";
+import { genres } from "../../__mocks__/movies.mock";
 
 // import { useEffect } from "react";
 
@@ -17,19 +19,11 @@ interface IActorPhotos {
 }
 
 interface IKnownBy {
-  cast: Array<IMovie>
+  cast: Array<IMovieCard>
 }
 
-interface IMovie {
-  title: string;
-  poster_path: string | null;
-  vote_average: number;
-  genre_ids: number[];
-}
 
-interface IGenres {
-  genres: Array<{id: number; name: string}>
-}
+
 
 interface ActorPageContainerProps {
   children(actorData: IActorData, actorPhotos: IActorPhotos, known_by: IKnownBy, genres: IGenres): ReactElement;

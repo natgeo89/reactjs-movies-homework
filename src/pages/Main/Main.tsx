@@ -5,28 +5,50 @@ import Pagination from "../../components/Pagination";
 
 import styles from "./Main.module.scss";
 
-import img from "../components/MovieCard/img/movieImg.jpg";
+import movieDefaultImg from "../../components/MovieCard/img/movieImg.jpg";
+import MainPageContainer from "../../containers/MainPageContainer";
 
 function Main() {
   return (
-    <>
-      <Header />
-      <main className={styles.wrapper}>
-        <TabBar />
-        <ul className={styles.movies_container}>
-          {Array.from(Array(20), (item, index) => (
-            <MovieCard
-              key={index}
-              rating={8.8}
-              img={img}
-              title={"Movie Title"}
-              genres={["genre1", "genre2"]}
-            />
-          ))}
-        </ul>
-        <Pagination count={5} />
-      </main>
-    </>
+    <MainPageContainer>
+      {({ results }, {genres}) => (
+        <>
+          <Header />
+          <main className={styles.wrapper}>
+            <TabBar />
+            <ul className={styles.movies_container}>
+              {results.map(
+                    ({ poster_path, vote_average, title, genre_ids }, ind) => {
+                      const photo = poster_path
+                        ? `https://image.tmdb.org/t/p/w1280${poster_path}`
+                        : movieDefaultImg;
+
+                      const genresStringArr = genre_ids.map((genre_id) => {
+                        const targetIndex = genres.findIndex(
+                          ({ id }) => id === genre_id
+                        );
+                        return genres[targetIndex].name;
+                      })
+
+                      if (ind > 19) return null;
+
+                      return (
+                        <MovieCard
+                          key={ind}
+                          rating={vote_average}
+                          img={photo}
+                          title={title}
+                          genres={genresStringArr}
+                        />
+                      );
+                    }
+                  )}
+            </ul>
+            <Pagination count={5} />
+          </main>
+        </>
+      )}
+    </MainPageContainer>
   );
 }
 
