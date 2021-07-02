@@ -3,7 +3,6 @@ import MovieCard from "../../components/MovieCard";
 
 import styles from "./ActorPage.module.scss";
 
-import actorImg from "./img/actor.jpg";
 import movieDefaultImg from "../../components/MovieCard/img/movieImg.jpg";
 
 import ActorPageContainer from "../../containers/ActorPageContainer";
@@ -45,7 +44,7 @@ function ActorPage() {
                   </div>
                   <div>
                     <h3>Biography:</h3>
-                    <div className={styles.actor_info__place_birth}>
+                    <div className={styles.actor_info__biography}>
                       {biography}
                     </div>
                   </div>

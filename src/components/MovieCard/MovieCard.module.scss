@@ -4,6 +4,7 @@ $green: #17cf4b;
 .card_wrapper {
   position: relative;
 
+  min-width: 200px;
   max-width: 250px;
 
   color: $gray;
@@ -42,6 +43,8 @@ $green: #17cf4b;
   display: flex;
   align-items: center;
   justify-content: center;
+
+
 
 }
 

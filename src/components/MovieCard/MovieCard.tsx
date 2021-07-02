@@ -4,8 +4,8 @@ import icon from './img/play_icon.svg';
 
 interface MovieCardProps {
   img: string;
-  title: string;
-  genres: string[];
+  title?: string;
+  genres?: string[];
   rating: number;
 }
 
@@ -17,8 +17,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ img, rating, title, genres }) => 
         <img src={img} className={styles.image} alt={"film"} />
         <img src={icon} width='50px' className={styles.icon} alt={"icon"} />
       </div>
-      <div>{title}</div>
-      <div>{genres.join(" ")}</div>
+      {title && <div>{title}</div>}
+      {genres && <div>{genres.join(" ")}</div>}
     </div>
   );
 };

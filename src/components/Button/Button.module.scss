@@ -1,3 +1,6 @@
+$green: #17cf4b;
+
+
 .btn {
   min-width: 50px;
   padding: 10px;
@@ -12,6 +15,6 @@
 }
 
 .primary {
-  background-color: #09ade3;
+  background-color: $green;
   border: none;
 }

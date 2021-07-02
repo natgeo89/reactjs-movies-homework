@@ -43,6 +43,7 @@ const ActorPageContainer: FC<ActorPageContainerProps> = ({ children }) => {
   //   const actorData = await fetchActorData();
   //   setActorData(actorData);
   // }, []);
+  
 
   return children(actorData, actorPhotos, known_by, genres);
 };

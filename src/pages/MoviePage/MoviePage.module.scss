@@ -8,7 +8,7 @@ h3 {
   font-size: 1.5rem;
 }
 
-.actor_page {
+.movie_page {
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -19,19 +19,20 @@ h3 {
   background-color: $bg-color;
 }
 
-.actor_block {
+.movie_block {
   display: flex;
   gap: 40px;
+  align-items: flex-start;
 }
 
-.actor_img {
+.movie_img {
   align-self: flex-start;
   width: 300px;
 
   border-radius: 10px;
 }
 
-.actor_info {
+.movie_info {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -39,20 +40,22 @@ h3 {
 
 
 
-.actor_info__birthday,
-.actor_info__biography,
-.actor_info__place_birth {
+.movie_info__title,
+.movie_info__overview,
+.movie_info__release_date,
+.movie_info__revenue,
+.movie_info__duration {
   font-size: 2rem;
 }
 
-.actor_info__photos {
+.movie_info__photos {
   display: flex;
   flex-wrap: wrap;
   
   gap: 30px;
 }
 
-.actor_info__photos__photo {
+.movie_info__photos__photo {
   width: 100px;
   margin-top: 10px;
 
@@ -70,7 +73,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, auto));
   gap: 30px;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   padding: 60px;
 }
