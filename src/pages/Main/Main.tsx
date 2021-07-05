@@ -11,13 +11,15 @@ import MainPageContainer from "../../containers/MainPageContainer";
 function Main() {
   return (
     <MainPageContainer>
-      {({ results }, {genres}) => (
+      {(results, { genres }, handleTabClick, handlePaginationChange, handleSearch) => (
         <>
-          <Header />
+          <Header handleSearch={handleSearch}/>
           <main className={styles.wrapper}>
-            <TabBar />
+            <TabBar handleTabClick={handleTabClick} />
             <ul className={styles.movies_container}>
-              {results.map(
+              {results.length === 0
+                ? "no data"
+                : results.map(
                     ({ poster_path, vote_average, title, genre_ids }, ind) => {
                       const photo = poster_path
                         ? `https://image.tmdb.org/t/p/w1280${poster_path}`
@@ -28,7 +30,7 @@ function Main() {
                           ({ id }) => id === genre_id
                         );
                         return genres[targetIndex].name;
-                      })
+                      });
 
                       if (ind > 19) return null;
 
@@ -44,7 +46,7 @@ function Main() {
                     }
                   )}
             </ul>
-            <Pagination count={5} />
+            <Pagination count={5} handlePaginationChange={handlePaginationChange}/>
           </main>
         </>
       )}

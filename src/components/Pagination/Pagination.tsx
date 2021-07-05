@@ -4,13 +4,15 @@ import styles from "./Pagination.module.scss";
 
 interface PaginationProps {
   count?: number;
+  handlePaginationChange: (page: number) => any;
 }
-const Pagination: React.FC<PaginationProps> = ({ count }) => {
+const Pagination: React.FC<PaginationProps> = ({ count, handlePaginationChange }) => {
   const paginationArr = Array.from(Array(count), (count, ind) => ind + 1);
   const [activeElem, setActiveElem] = useState(paginationArr[0]);
 
   const handleClick = (activeElem: number): void => {
     setActiveElem(activeElem);
+    handlePaginationChange(activeElem);
   };
 
   return (
