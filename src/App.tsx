@@ -1,15 +1,15 @@
 import React from "react";
 // import ActorPage from "./pages/ActorPage";
-import MoviePage from "./pages/MoviePage";
+// import MoviePage from "./pages/MoviePage";
 
-// import Main from "./pages/Main";
+import Main from "./pages/Main";
 
 function App() {
   return (
   <>
-  {/* <Main /> */}
+  <Main />
   {/* <ActorPage /> */}
-  <MoviePage />
+  {/* <MoviePage /> */}
 
   </>);
 }

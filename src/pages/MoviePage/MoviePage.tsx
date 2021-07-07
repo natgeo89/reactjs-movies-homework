@@ -3,7 +3,7 @@ import MovieCard from "../../components/MovieCard";
 
 import styles from "./MoviePage.module.scss";
 
-import movieDefaultImg from "../../components/MovieCard/img/movieImg.jpg";
+// import movieDefaultImg from "../../components/MovieCard/img/movieImg.jpg";
 import Button from "../../components/Button";
 import MoviePageContainer from "../../containers/MoviePageContainer";
 
