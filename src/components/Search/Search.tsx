@@ -12,7 +12,6 @@ const Search: React.FC<SearchProps> = ({ text, handleSearch }) => {
 
   const handleChange = (query: string) => {
     setValue(query);
-    console.log(value)
   };
 
   return (
@@ -24,13 +23,14 @@ const Search: React.FC<SearchProps> = ({ text, handleSearch }) => {
         onChange={({ target: { value } }) => handleChange(value)}
         value={value}
       />
-      <img src={searchIcon} className={styles.search_icon} alt="search" onClick={()=> {
-
-        const a =handleSearch(value);
-        console.log(a)
-      }
-
-        }/>
+      <img
+        src={searchIcon}
+        className={styles.search_icon}
+        alt="search"
+        onClick={() => {
+          handleSearch(value);
+        }}
+      />
     </form>
   );
 };

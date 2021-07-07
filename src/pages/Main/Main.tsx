@@ -7,45 +7,17 @@ import styles from "./Main.module.scss";
 
 import movieDefaultImg from "../../components/MovieCard/img/movieImg.jpg";
 import MainPageContainer from "../../containers/MainPageContainer";
+import MovieList from "../../components/MovieList";
 
 function Main() {
   return (
     <MainPageContainer>
-      {(results, { genres }, handleTabClick, handlePaginationChange, handleSearch) => (
+      {(movies, handleTabClick, handlePaginationChange, handleSearch, isLoading) => (
         <>
           <Header handleSearch={handleSearch}/>
           <main className={styles.wrapper}>
             <TabBar handleTabClick={handleTabClick} />
-            <ul className={styles.movies_container}>
-              {results.length === 0
-                ? "no data"
-                : results.map(
-                    ({ poster_path, vote_average, title, genre_ids }, ind) => {
-                      const photo = poster_path
-                        ? `https://image.tmdb.org/t/p/w1280${poster_path}`
-                        : movieDefaultImg;
-
-                      const genresStringArr = genre_ids.map((genre_id) => {
-                        const targetIndex = genres.findIndex(
-                          ({ id }) => id === genre_id
-                        );
-                        return genres[targetIndex].name;
-                      });
-
-                      if (ind > 19) return null;
-
-                      return (
-                        <MovieCard
-                          key={ind}
-                          rating={vote_average}
-                          img={photo}
-                          title={title}
-                          genres={genresStringArr}
-                        />
-                      );
-                    }
-                  )}
-            </ul>
+            {isLoading ? <div>LOADING...</div> : <MovieList movies={movies}/>}
             <Pagination count={5} handlePaginationChange={handlePaginationChange}/>
           </main>
         </>

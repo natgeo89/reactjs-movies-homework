@@ -9,11 +9,3 @@ $bg-color:rgb(41, 38, 38);
   background-color: $bg-color;
 }
 
-.movies_container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-  padding: 60px;
-}

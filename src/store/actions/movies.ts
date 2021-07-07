@@ -3,12 +3,12 @@ import { API_KEY } from "../../constants/constants";
 import { IMoviesResults } from "../../types/movie";
 
 export enum MoviesActionType {
-  GET_MOVIES = "GET_MOVIES",
+  GET_CATEGORY = "GET_CATEGORY",
   SEARCH_MOVIES = "SEARCH_MOVIES",
 }
 
 export interface IGetMoviesAction {
-  type: MoviesActionType.GET_MOVIES;
+  type: MoviesActionType.GET_CATEGORY;
   payload: IMoviesResults;
 }
 
@@ -33,7 +33,7 @@ export const fetchMovies = (category: string, page: number) => {
 
 export const getMoviesAction = (results: IMoviesResults): IGetMoviesAction => {
   return {
-    type: MoviesActionType.GET_MOVIES,
+    type: MoviesActionType.GET_CATEGORY,
     payload: results,
   };
 };

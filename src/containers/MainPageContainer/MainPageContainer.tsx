@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { IGenres, IMovieCard, IMoviesResults } from "../../types/movie";
 import { RootState } from "../../store";
 
-import { popular, topRated, genres } from "../../__mocks__/movies.mock";
 import {
   fetchMovies,
   getMoviesAction,
@@ -14,17 +13,18 @@ import {
 interface MainPageContainerProps {
   children(
     movies: IMovieCard[],
-    genres: IGenres,
     handleTabClick: (tab: string) => any,
     handlePaginationChange: (page: number) => any,
     handleSearch: (query: string) => any,
+    isLoading: boolean
   ): ReactElement;
 }
 
 const MainPageContainer: FC<MainPageContainerProps> = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState("popular");
-  // const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const dispatch = useDispatch();
   const movies = useSelector((state: RootState) => state.results);
@@ -32,6 +32,8 @@ const MainPageContainer: FC<MainPageContainerProps> = ({ children }) => {
   const handleTabClick = (tab: string) => {
     const updateTab = tab === "Top rated" ? "top_rated" : tab;
     setActiveTab(updateTab.toLowerCase());
+    setCurrentPage(1);
+    setSearchQuery('');
   };
 
   const handlePaginationChange = (page: number) => {
@@ -39,26 +41,38 @@ const MainPageContainer: FC<MainPageContainerProps> = ({ children }) => {
   };
 
   const handleSearch = (query: string) => {
-    // setSearchQuery(query.toLowerCase());
-    // console.log(searchQuery)
-    dispatch(searchMovies(query.toLowerCase(), 1));
+    setSearchQuery(query);
   };
 
   useEffect(() => {
+    setIsLoading(true);
+    if (searchQuery === "") {
+      dispatch(fetchMovies(activeTab, currentPage));
+    } else {
+      dispatch(searchMovies(searchQuery, currentPage));
+    }
+    setIsLoading(false);
+  }, [currentPage, searchQuery]);
+
+  useEffect(() => {
+    setIsLoading(true);
     dispatch(fetchMovies(activeTab, currentPage));
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     dispatch(fetchMovies(activeTab, currentPage));
-  }, [activeTab, currentPage]);
-
+    setIsLoading(false);
+  }, [activeTab]);
 
   return children(
     movies,
-    genres,
+    // genres,
     handleTabClick,
     handlePaginationChange,
-    handleSearch
+    handleSearch,
+    isLoading
   );
 };
 

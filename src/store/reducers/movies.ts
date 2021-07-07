@@ -11,7 +11,7 @@ export const movieReducer = (
   action: MovieAction
 ) => {
   switch (action.type) {
-    case MoviesActionType.GET_MOVIES:
+    case MoviesActionType.GET_CATEGORY:
       return { ...action.payload };
     case MoviesActionType.SEARCH_MOVIES:
       return { ...action.payload };
