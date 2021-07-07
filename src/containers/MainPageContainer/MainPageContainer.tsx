@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactElement, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IMovieCard } from "../../types/movie";
@@ -66,7 +67,6 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
 
   return children(
     movies,
-    // genres,
     handleTabClick,
     handlePaginationChange,
     handleSearch,

@@ -1,11 +1,9 @@
 import Header from "../../components/Header";
 import TabBar from "../../components/TabBar";
-import MovieCard from "../../components/MovieCard";
 import Pagination from "../../components/Pagination";
 
 import styles from "./Main.module.scss";
 
-import movieDefaultImg from "../../components/MovieCard/img/movieImg.jpg";
 import MainPageContainer from "../../containers/MainPageContainer";
 import MovieList from "../../components/MovieList";
 

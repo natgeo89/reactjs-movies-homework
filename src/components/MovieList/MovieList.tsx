@@ -1,11 +1,8 @@
 import React from 'react';
-import Search from '../Search/Search';
-import LanguageSelect from '../LanguageSelect/LanguageSelect';
 import styles from './MovieList.module.scss';
 import MovieCard from '../MovieCard';
 import { IMovieCard } from '../../types/movie';
 
-// import { genres } from "../../__mocks__/movies.mock";
 import {genres} from '../../constants/constants';
 import movieDefaultImg from "../../components/MovieCard/img/movieImg.jpg";
 
@@ -27,8 +24,6 @@ const MovieList: React.FC<MovieListProps> = ({movies}) => (
                         : movieDefaultImg;
 
                       const genresStringArr = genre_ids.map((genre_id) => genres[genre_id].ru);
-
-                      // if (ind > 19) return null;
 
                       return (
                         <MovieCard
