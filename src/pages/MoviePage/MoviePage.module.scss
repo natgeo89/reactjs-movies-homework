@@ -1,0 +1,79 @@
+$bg-color:rgb(41, 38, 38);
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.movie_page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 60px;
+
+  color: white;
+
+  background-color: $bg-color;
+}
+
+.movie_block {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.movie_img {
+  align-self: flex-start;
+  width: 300px;
+
+  border-radius: 10px;
+}
+
+.movie_info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+
+
+.movie_info__title,
+.movie_info__overview,
+.movie_info__release_date,
+.movie_info__revenue,
+.movie_info__duration {
+  font-size: 2rem;
+}
+
+.movie_info__photos {
+  display: flex;
+  flex-wrap: wrap;
+  
+  gap: 30px;
+}
+
+.movie_info__photos__photo {
+  width: 100px;
+  margin-top: 10px;
+
+  border-radius: 5px;
+}
+
+.known_by {
+  font-size: 3rem;
+  
+  text-transform: uppercase;
+}
+
+
+.movies_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}

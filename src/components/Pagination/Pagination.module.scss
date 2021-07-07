@@ -1,0 +1,29 @@
+$green: #17cf4b;
+
+.pagination {
+  display: flex;
+
+  align-self: center;
+  justify-content: space-between;
+  width: 300px;
+  padding-bottom: 50px;
+
+  color: white;
+  font-size: 2rem;
+
+}
+
+.elem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.active {
+  background-color: $green;
+}

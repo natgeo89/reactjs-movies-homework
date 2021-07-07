@@ -1,0 +1,76 @@
+$bg-color:rgb(41, 38, 38);
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.actor_page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 60px;
+
+  color: white;
+
+  background-color: $bg-color;
+}
+
+.actor_block {
+  display: flex;
+  gap: 40px;
+}
+
+.actor_img {
+  align-self: flex-start;
+  width: 300px;
+
+  border-radius: 10px;
+}
+
+.actor_info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+
+
+.actor_info__birthday,
+.actor_info__biography,
+.actor_info__place_birth {
+  font-size: 2rem;
+}
+
+.actor_info__photos {
+  display: flex;
+  flex-wrap: wrap;
+  
+  gap: 30px;
+}
+
+.actor_info__photos__photo {
+  width: 100px;
+  margin-top: 10px;
+
+  border-radius: 5px;
+}
+
+.known_by {
+  font-size: 3rem;
+  
+  text-transform: uppercase;
+}
+
+
+.movies_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+  gap: 30px;
+  align-items: start;
+  justify-content: center;
+  padding: 60px;
+}

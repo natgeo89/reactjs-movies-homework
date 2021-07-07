@@ -1,0 +1,20 @@
+$green: #17cf4b;
+
+
+.btn {
+  min-width: 50px;
+  padding: 10px;
+
+  color: white;
+  font-size: 2rem;
+
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: $green;
+  border: none;
+}

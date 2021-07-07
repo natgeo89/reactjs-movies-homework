@@ -1,0 +1,21 @@
+.tab {
+  padding: 5px 10px;  
+
+  color: white;
+
+  font-size: 2rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.tab.active {
+  color: black;
+
+  background-color: white;
+}
+
+.tab:not(:last-child) {
+  border-right: 2px solid white;
+}
+
