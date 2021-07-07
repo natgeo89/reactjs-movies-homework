@@ -5,7 +5,7 @@ import { movieInfo } from "../../__mocks__/movie.mock";
  
 
 interface MoviePageContainerProps {
-  children(movieInfo: ImovieInfo): ReactElement;
+  children(movieInfo: ImovieInfo, handleSearch: (query: string)=>any): ReactElement;
 }
 
 const MoviePageContainer: React.FC<MoviePageContainerProps> = ({ children }) => {
@@ -16,9 +16,11 @@ const MoviePageContainer: React.FC<MoviePageContainerProps> = ({ children }) => 
   //   const MovieData = await fetchMovieData();
   //   setMovieData(MovieData);
   // }, []);
-  
+  const handleSearch = (query: string) => {
+    
+  }
 
-  return children(movieInfo);
+  return children(movieInfo, handleSearch);
 };
 
 export default MoviePageContainer;

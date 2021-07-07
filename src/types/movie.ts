@@ -13,14 +13,10 @@ export interface IMovieCard {
   poster_path: string | null;
   vote_average: number;
   genre_ids: number[];
+  id: number;
 }
 
-interface IPopular {
-  page: number;
-  results: IMovieCard[];
-}
-
-interface ITopRated {
+export interface IMoviesResults {
   page: number;
   results: IMovieCard[];
 }
@@ -29,5 +25,3 @@ export interface IGenres {
   genres: Array<{id: number; name: string}>
 }
 
-
-export type IMoviesResults = IPopular | ITopRated;

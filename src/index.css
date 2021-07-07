@@ -3,8 +3,11 @@
    License: none (public domain)
 */
 
+
 #root {
   height: 100vh;
+  
+  background-color: rgb(41, 38, 38);
 }
 
 html, body, div, span, applet, object, iframe,

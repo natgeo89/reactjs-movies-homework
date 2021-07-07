@@ -14,13 +14,14 @@ function ActorPage() {
         { name, birthday, place_of_birth, biography, profile_path },
         { profiles },
         { cast },
-        { genres }
+        { genres },
+        handleSearch
       ) => {
         const actorProfile = `https://image.tmdb.org/t/p/w1280${profile_path}`;
 
         return (
           <>
-            <Header />
+            <Header handleSearch={handleSearch}/>
             <main className={styles.actor_page}>
               <section className={styles.actor_block}>
                 <img

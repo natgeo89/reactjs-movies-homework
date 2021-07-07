@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import Tab from "./Tab/Tab";
 import styles from "./TabBar.module.scss";
 
-const TabBar: React.FC = () => {
+interface TabBarProps {
+  handleTabClick: (tab: string)=>{}
+}
+
+const TabBar: React.FC<TabBarProps> = ({handleTabClick}) => {
   const tabsArr = ["Popular", "Top rated", "Upcoming"];
 
   const [activeTab, setActiveTab] = useState(tabsArr[0]);
 
   const handleClick = (tab: string): void => {
     setActiveTab(tab);
+    handleTabClick(tab);
   }
 
   return (
