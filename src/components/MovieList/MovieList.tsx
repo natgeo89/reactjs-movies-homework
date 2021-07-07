@@ -26,7 +26,7 @@ const MovieList: React.FC<MovieListProps> = ({movies}) => (
                         ? `https://image.tmdb.org/t/p/w1280${poster_path}`
                         : movieDefaultImg;
 
-                      const genresStringArr = genre_ids.map((genre_id) => genres[genre_id]);
+                      const genresStringArr = genre_ids.map((genre_id) => genres[genre_id].ru);
 
                       // if (ind > 19) return null;
 

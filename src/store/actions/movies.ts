@@ -24,7 +24,7 @@ export type MovieAction = IGetMoviesAction | ISearchMoviesAction;
 export const fetchMovies = (category: string, page: number) => {
   return async (dispatch: Dispatch<MovieAction>) => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
+      `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=ru&page=${page}`
     );
     const movies = await response.json();
     dispatch(getMoviesAction(movies));
@@ -44,7 +44,7 @@ export const getMoviesAction = (results: IMoviesResults): IGetMoviesAction => {
 export const searchMovies = (query: string, page: number) => {
   return async (dispatch: Dispatch<MovieAction>) => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`
+      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ru&query=${query}&page=${page}&include_adult=false`
     );
     const movies = await response.json();
     dispatch(searchMoviesAction(movies));

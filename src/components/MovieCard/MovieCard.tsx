@@ -5,7 +5,7 @@ import icon from './img/play_icon.svg';
 interface MovieCardProps {
   img: string;
   title?: string;
-  genres?: string[];
+  genres?: string[] | any;
   rating: number;
 }
 
