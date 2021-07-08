@@ -10,7 +10,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({handleSearch}) => (
   <header className={styles.header}>
     <h1 className={styles.title}>films</h1>
-    <Search text='Movies, person, movie theaters' handleSearch={handleSearch} />
+    <Search text='type to search movies...' handleSearch={handleSearch} />
     <LanguageSelect />
   </header>
 );

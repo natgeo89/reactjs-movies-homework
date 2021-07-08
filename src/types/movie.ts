@@ -19,6 +19,7 @@ export interface IMovieCard {
 export interface IMoviesResults {
   page: number;
   results: IMovieCard[];
+  total_pages: number;
 }
 
 export interface IGenres {

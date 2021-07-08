@@ -10,13 +10,13 @@ import MovieList from "../../components/MovieList";
 function Main() {
   return (
     <MainPageContainer>
-      {(movies, handleTabClick, handlePaginationChange, handleSearch, isLoading) => (
+      {(movies, handleTabClick, handlePaginationChange, handleSearch, isLoading, pages, page) => (
         <>
           <Header handleSearch={handleSearch}/>
           <main className={styles.wrapper}>
             <TabBar handleTabClick={handleTabClick} />
             {isLoading ? <div>LOADING...</div> : <MovieList movies={movies}/>}
-            <Pagination count={5} handlePaginationChange={handlePaginationChange}/>
+            <Pagination count={pages} activePage={page} handlePaginationChange={handlePaginationChange}/>
           </main>
         </>
       )}

@@ -10,13 +10,12 @@ import movieDefaultImg from "../../components/MovieCard/img/movieImg.jpg";
 
 interface MovieListProps {
   movies: IMovieCard[];
-
 }
 
 const MovieList: React.FC<MovieListProps> = ({movies}) => (
   <ul className={styles.movies_container}>
               {movies.length === 0
-                ? "NO RESULTS FOUND"
+                ? <div className={styles.no_results}>no results found</div>
                 : movies.map(
                     ({ poster_path, vote_average, title, genre_ids, id }, ind) => {
                       const photo = poster_path

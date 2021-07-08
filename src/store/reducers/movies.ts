@@ -4,6 +4,7 @@ import { MovieAction, MoviesActionType } from "../actions/movies";
 const initState = {
   page: 1,
   results: [],
+  total_pages: 0,
 };
 
 export const movieReducer = (

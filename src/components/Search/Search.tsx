@@ -10,9 +10,24 @@ export interface SearchProps {
 const Search: React.FC<SearchProps> = ({ text, handleSearch }) => {
   const [value, setValue] = useState("");
 
-  const handleChange = (query: string) => {
-    setValue(query);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {target: {value}} = e;
+    setValue(value);
   };
+
+  const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    handleSearch(value);
+  };
+
+
+  const handlePressKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSearch(value);
+    }
+  };
+
+
 
   return (
     <form>
@@ -20,16 +35,15 @@ const Search: React.FC<SearchProps> = ({ text, handleSearch }) => {
         type="search"
         className={styles.search_field}
         placeholder={text}
-        onChange={({ target: { value } }) => handleChange(value)}
+        onChange={handleChange}
+        onKeyPress={handlePressKey}
         value={value}
       />
       <img
         src={searchIcon}
         className={styles.search_icon}
         alt="search"
-        onClick={() => {
-          handleSearch(value);
-        }}
+        onClick={handleClick}
       />
     </form>
   );

@@ -15,7 +15,9 @@ interface MainPageContainerProps {
     handleTabClick: (tab: string) => any,
     handlePaginationChange: (page: number) => any,
     handleSearch: (query: string) => any,
-    isLoading: boolean
+    isLoading: boolean,
+    pages: number,
+    page: number,
   ): ReactElement;
 }
 
@@ -25,8 +27,11 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  //store
   const dispatch = useDispatch();
   const movies = useSelector((state: RootState) => state.results);
+  const pages = useSelector((state: RootState) => state.total_pages);
+  const page = useSelector((state: RootState) => state.page);
 
   const handleTabClick = (tab: string) => {
     const updateTab = tab === "Top rated" ? "top_rated" : tab;
@@ -45,9 +50,10 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    if (searchQuery === "") {
+    if (searchQuery === "") {      
       dispatch(fetchMovies(activeTab, currentPage));
     } else {
+      setCurrentPage(1);
       dispatch(searchMovies(searchQuery, currentPage));
     }
     setIsLoading(false);
@@ -70,7 +76,9 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
     handleTabClick,
     handlePaginationChange,
     handleSearch,
-    isLoading
+    isLoading, 
+    pages,
+    page
   );
 };
 
