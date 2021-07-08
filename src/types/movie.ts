@@ -6,6 +6,7 @@ export interface ImovieInfo {
   genres: {id: number; name: string;}[];
   runtime: number | null;
   title: string;
+  id: number;
 }
 
 export interface IMovieCard {

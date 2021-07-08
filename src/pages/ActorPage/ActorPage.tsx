@@ -74,7 +74,7 @@ function ActorPage() {
 
                 <ul className={styles.movies_container}>
                   {cast.map(
-                    ({ poster_path, vote_average, title, genre_ids }, ind) => {
+                    ({ poster_path, vote_average, title, genre_ids, id }, ind) => {
                       const photo = poster_path
                         ? `https://image.tmdb.org/t/p/w1280${poster_path}`
                         : movieDefaultImg;
@@ -90,7 +90,8 @@ function ActorPage() {
 
                       return (
                         <MovieCard
-                          key={ind}
+                          key={id}
+                          id={id}
                           rating={vote_average}
                           img={photo}
                           title={title}

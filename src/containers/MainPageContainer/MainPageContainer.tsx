@@ -34,8 +34,7 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
   const page = useSelector((state: RootState) => state.page);
 
   const handleTabClick = (tab: string) => {
-    const updateTab = tab === "Top rated" ? "top_rated" : tab;
-    setActiveTab(updateTab.toLowerCase());
+    setActiveTab(tab);
     setCurrentPage(1);
     setSearchQuery('');
   };

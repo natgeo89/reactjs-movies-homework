@@ -1,4 +1,5 @@
-import React, { ReactElement} from "react";
+import React, { ReactElement, useEffect} from "react";
+import { useParams } from "react-router-dom";
 import { ImovieInfo } from "../../types/movie";
 
 import { movieInfo } from "../../__mocks__/movie.mock";
@@ -12,10 +13,14 @@ const MoviePageContainer: React.FC<MoviePageContainerProps> = ({ children }) => 
   // const [MovieData, setMovieData] = useState({});
   // const MovieData = MovieData
 
-  // useEffect(async () => {
-  //   const MovieData = await fetchMovieData();
-  //   setMovieData(MovieData);
-  // }, []);
+  const {id}: any = useParams();
+
+  useEffect(() => {
+    // const MovieData = await fetchMovieData();
+    // setMovieData(MovieData);
+    console.log(id)
+
+  });
   const handleSearch = (query: string) => {
     
   }
