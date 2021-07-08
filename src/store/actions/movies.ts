@@ -21,7 +21,7 @@ export type MovieAction = IGetMoviesAction | ISearchMoviesAction;
 
 //get by categories
 
-export const fetchMovies = (category: string, page: number) => {
+export const fetchMovies = (category: string | null, page: string | null) => {
   return async (dispatch: Dispatch<MovieAction>) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=ru&page=${page}`
@@ -41,7 +41,7 @@ export const getMoviesAction = (results: IMoviesResults): IGetMoviesAction => {
 //search
 
 //https://api.themoviedb.org/3/search/movie?api_key=231a9923e67455d132639e888240a6ae&language=en-US&query=inception&page=1&include_adult=false
-export const searchMovies = (query: string, page: number) => {
+export const searchMovies = (query: string | null, page: string | null) => {
   return async (dispatch: Dispatch<MovieAction>) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ru&query=${query}&page=${page}&include_adult=false`
