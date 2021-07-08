@@ -15,18 +15,21 @@ interface IActorData {
 }
 
 interface IActorPhotos {
-  profiles: Array<{file_path: string}>
+  profiles: Array<{ file_path: string }>;
 }
 
 interface IKnownBy {
-  cast: Array<IMovieCard>
+  cast: Array<IMovieCard>;
 }
 
-
-
-
 interface ActorPageContainerProps {
-  children(actorData: IActorData, actorPhotos: IActorPhotos, known_by: IKnownBy, genres: IGenres): ReactElement;
+  children(
+    actorData: IActorData,
+    actorPhotos: IActorPhotos,
+    known_by: IKnownBy,
+    genres: IGenres,
+    handleSearch: (query: string)=>any
+  ): ReactElement;
 }
 
 const ActorPageContainer: React.FC<ActorPageContainerProps> = ({ children }) => {
@@ -37,9 +40,11 @@ const ActorPageContainer: React.FC<ActorPageContainerProps> = ({ children }) => 
   //   const actorData = await fetchActorData();
   //   setActorData(actorData);
   // }, []);
-  
+  const handleSearch = (query: string) => {
+    
+  }
 
-  return children(actorData, actorPhotos, known_by, genres);
+  return children(actorData, actorPhotos, known_by, genres, handleSearch);
 };
 
 export default ActorPageContainer;
