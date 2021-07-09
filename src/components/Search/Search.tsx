@@ -16,18 +16,20 @@ const Search: React.FC<SearchProps> = ({ text, handleSearch }) => {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
-    handleSearch(value);
+    if (value !== '') {
+      handleSearch(value);
+    }
   };
 
 
   const handlePressKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleSearch(value);
+      if (value !== '') {
+        handleSearch(value);
+      }
     }
   };
-
-
 
   return (
     <form>

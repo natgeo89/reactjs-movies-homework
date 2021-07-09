@@ -1,12 +1,9 @@
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import {reducer} from './reducers';
 import thunk from "redux-thunk";
 
-import { movieReducer } from "./reducers/movies";
-
-export type RootState = ReturnType<typeof movieReducer>;
-
 export const store = createStore(
-  movieReducer,
+  reducer,
   composeWithDevTools(applyMiddleware(thunk))
 );

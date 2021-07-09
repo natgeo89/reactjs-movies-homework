@@ -2,9 +2,9 @@
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IMovieCard } from "../../types/movie";
-import { RootState } from "../../store";
+import { RootState } from "../../store/reducers";
 
-import { fetchMovies, searchMovies } from "../../store/actions/movies";
+import { fetchMovies, searchMovies } from "../../store/actions/moviesAction";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
 
@@ -24,13 +24,14 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
   const activeFilter = useQuery("filter");
   const activePage = useQuery("page");
   const search = useQuery("search");
+  const isQueryEmpty = (activeFilter === null && search === null && activePage === null);
 
   const history = useHistory();
 
   //store
   const dispatch = useDispatch();
-  const movies = useSelector((state: RootState) => state.results);
-  const pages = useSelector((state: RootState) => state.total_pages);
+  const movies = useSelector((state: RootState) => state.movies.results);
+  const pages = useSelector((state: RootState) => state.movies.total_pages);
 
   const handleTabClick = (tab: string) => {
     const filter = tab.replace(/ /g, "_").toLowerCase();
@@ -47,7 +48,6 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    const isQueryEmpty = activeFilter === null && search === null && activePage === null;
     if (isQueryEmpty) return;
 
     if (search === null) {
@@ -59,7 +59,7 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
 
 
   useEffect(() => {
-    if (activeFilter === null && search === null && activePage === null) {
+    if (isQueryEmpty) {
       history.push("/?filter=popular&page=1");
     }
   }, []);

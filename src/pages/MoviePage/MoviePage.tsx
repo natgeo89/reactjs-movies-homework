@@ -19,6 +19,7 @@ function MoviePage() {
         overview,
         release_date,
         id,
+        vote_average,
       }, handleSearch) => {
         const movieImg = `https://image.tmdb.org/t/p/w1280${backdrop_path}`;
 
@@ -27,7 +28,7 @@ function MoviePage() {
             <Header handleSearch={handleSearch}/>
             <main className={styles.movie_page}>
               <section className={styles.movie_block}>
-                <MovieCard id={id} rating={10} img={movieImg} />
+                <MovieCard id={id} rating={vote_average} img={movieImg} />
                 <div className={styles.movie_info}>
                   <div>
                     <h3>Title:</h3>

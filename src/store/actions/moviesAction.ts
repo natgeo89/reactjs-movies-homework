@@ -1,11 +1,8 @@
 import { Dispatch } from "redux";
 import { API_KEY } from "../../constants/constants";
-import { IMoviesResults } from "../../types/movie";
+import { IMoviesResults, MoviesActionType } from "../../types/movie";
 
-export enum MoviesActionType {
-  GET_CATEGORY = "GET_CATEGORY",
-  SEARCH_MOVIES = "SEARCH_MOVIES",
-}
+
 
 export interface IGetMoviesAction {
   type: MoviesActionType.GET_CATEGORY;

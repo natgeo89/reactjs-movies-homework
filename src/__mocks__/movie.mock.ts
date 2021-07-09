@@ -1,4 +1,5 @@
-export const movieInfo = {
+
+export const movieDetailsMock = {
   adult: false,
   backdrop_path: "/ii8QGacT3MXESqBckQlyrATY0lT.jpg",
   belongs_to_collection: null,

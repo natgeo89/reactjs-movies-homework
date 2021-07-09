@@ -1,4 +1,4 @@
-export interface ImovieInfo {
+export interface ImovieDetails {
   backdrop_path: string ;
   revenue: number;
   overview: string;
@@ -7,6 +7,7 @@ export interface ImovieInfo {
   runtime: number | null;
   title: string;
   id: number;
+  vote_average: number;
 }
 
 export interface IMovieCard {
@@ -27,3 +28,8 @@ export interface IGenres {
   genres: Array<{id: number; name: string}>
 }
 
+export enum MoviesActionType {
+  GET_CATEGORY = "GET_CATEGORY",
+  SEARCH_MOVIES = "SEARCH_MOVIES",
+  GET_MOVIE_DETAILS = "GET_MOVIE_DETAILS",
+}

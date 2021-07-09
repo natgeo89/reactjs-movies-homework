@@ -1,31 +1,36 @@
 import React, { ReactElement, useEffect} from "react";
-import { useParams } from "react-router-dom";
-import { ImovieInfo } from "../../types/movie";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { getMovieDetails } from "../../store/actions/movieDetailsAction";
+import { RootState } from "../../store/reducers";
+import { ImovieDetails } from "../../types/movie";
 
-import { movieInfo } from "../../__mocks__/movie.mock";
+// import { movieDetailsMock } from "../../__mocks__/movie.mock";
  
 
 interface MoviePageContainerProps {
-  children(movieInfo: ImovieInfo, handleSearch: (query: string)=>any): ReactElement;
+  children(movieDetails: ImovieDetails, handleSearch: (query: string)=>any): ReactElement;
 }
 
 const MoviePageContainer: React.FC<MoviePageContainerProps> = ({ children }) => {
   // const [MovieData, setMovieData] = useState({});
   // const MovieData = MovieData
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const movieDetails = useSelector((state: RootState) => state.movie);
 
   const {id}: any = useParams();
 
   useEffect(() => {
-    // const MovieData = await fetchMovieData();
-    // setMovieData(MovieData);
-    console.log(id)
+    console.log(id);
+    dispatch(getMovieDetails(id));
+  }, []);
 
-  });
   const handleSearch = (query: string) => {
-    
+    history.push(`/?search=${query}&page=1`);
   }
 
-  return children(movieInfo, handleSearch);
+  return children(movieDetails, handleSearch);
 };
 
 export default MoviePageContainer;
