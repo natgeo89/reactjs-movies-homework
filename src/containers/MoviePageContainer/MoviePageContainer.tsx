@@ -1,36 +1,34 @@
 import React, { ReactElement, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { getMovieDetails } from "../../store/actions/movieDetailsAction";
+import { getActors, getMovieDetails } from "../../store/actions/movieActions";
 import { RootState } from "../../store/reducers";
-import { ImovieDetails } from "../../types/movie";
-
-// import { movieDetailsMock } from "../../__mocks__/movie.mock";
- 
+import { IMovieActor, ImovieDetails } from "../../types/movie";
 
 interface MoviePageContainerProps {
-  children(movieDetails: ImovieDetails, handleSearch: (query: string)=>any): ReactElement;
+  children(movieDetails: ImovieDetails, movieActors: IMovieActor[], handleSearch: (query: string)=>any): ReactElement;
 }
 
 const MoviePageContainer: React.FC<MoviePageContainerProps> = ({ children }) => {
-  // const [MovieData, setMovieData] = useState({});
-  // const MovieData = MovieData
   const history = useHistory();
   const dispatch = useDispatch();
-  const movieDetails = useSelector((state: RootState) => state.movie);
+  const movieDetails = useSelector((state: RootState) => state.movie.details);
+  const movieActors = useSelector((state: RootState) => state.movie.actors);
 
   const {id}: any = useParams();
 
   useEffect(() => {
     console.log(id);
     dispatch(getMovieDetails(id));
+    dispatch(getActors(id));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearch = (query: string) => {
     history.push(`/?search=${query}&page=1`);
   }
 
-  return children(movieDetails, handleSearch);
+  return children(movieDetails, movieActors, handleSearch);
 };
 
 export default MoviePageContainer;

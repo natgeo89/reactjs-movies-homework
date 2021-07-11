@@ -1,65 +1,31 @@
-import { ImovieDetails, MoviesActionType } from "../../types/movie";
-import { IMovieDetailsAction } from "../actions/movieDetailsAction";
+import { IMovieState, MoviesActionType } from "../../types/movie";
+import { IMovieAction } from "../actions/movieActions";
 
-const initState: any = {
-  // adult: false,
-  backdrop_path: "/620hnMVLu6RSZW6a5rwO8gqpt0t.jpg",
-  belongs_to_collection: null,
-  budget: 0,
-  genres: [
-    { id: 16, name: "Animation" },
-    { id: 35, name: "Comedy" },
-    { id: 10751, name: "Family" },
-    { id: 14, name: "Fantasy" },
-  ],
-  homepage: "https://www.disneyplus.com/movies/luca/7K1HyQ6Hl16P",
-  id: 508943,
-  imdb_id: "tt12801262",
-  original_language: "en",
-  original_title: "Luca",
-  overview:
-    "Luca and his best friend Alberto experience an unforgettable summer on the Italian Riviera. But all the fun is threatened by a deeply-held secret: they are sea monsters from another world just below the water’s surface.",
-  popularity: 4176.6,
-  poster_path: "/jTswp6KyDYKtvC52GbHagrZbGvD.jpg",
-  production_companies: [
-    {
-      id: 2,
-      logo_path: "/wdrCwmRnLFJhEoH8GSfymY85KHT.png",
-      name: "Walt Disney Pictures",
-      origin_country: "US",
-    },
-    {
-      id: 3,
-      logo_path: "/1TjvGVDMYsj6JBxOAkUHpPEwLf7.png",
-      name: "Pixar",
-      origin_country: "US",
-    },
-  ],
-  production_countries: [
-    { iso_3166_1: "US", name: "United States of America" },
-  ],
-  release_date: "2021-06-17",
-  revenue: 11600000,
-  runtime: 95,
-  spoken_languages: [
-    { english_name: "English", iso_639_1: "en", name: "English" },
-    { english_name: "Italian", iso_639_1: "it", name: "Italiano" },
-  ],
-  status: "Released",
-  tagline: "",
-  title: "Luca",
-  video: false,
-  vote_average: 8.1,
-  vote_count: 2340,
+const initState = {
+  details: {
+    backdrop_path: "",
+    genres: [],
+    id: 508943,
+    overview: "",
+    poster_path: "",
+    release_date: "",
+    revenue: 1,
+    runtime: 1,
+    title: "",
+    vote_average: 10,
+  },
+  actors: [],
 };
 
 export const movieDetailsReducer = (
-  state: ImovieDetails = initState,
-  action: IMovieDetailsAction
+  state: IMovieState = initState,
+  action: IMovieAction
 ) => {
   switch (action.type) {
     case MoviesActionType.GET_MOVIE_DETAILS:
-      return { ...action.payload };
+      return { ...state, details: action.payload };
+    case MoviesActionType.GET_MOVIE_ACTORS:
+      return { ...state, actors: action.payload };
     default:
       return initState;
   }

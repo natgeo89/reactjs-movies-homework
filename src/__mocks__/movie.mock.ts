@@ -57,3 +57,7 @@ export const movieDetailsMock = {
   vote_average: 8.3,
   vote_count: 29313,
 };
+
+
+//actors
+//https://api.themoviedb.org/3/movie/27205/credits?api_key=231a9923e67455d132639e888240a6ae&language=en-US

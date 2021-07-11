@@ -1,9 +1,9 @@
 export interface ImovieDetails {
-  backdrop_path: string ;
+  backdrop_path: string;
   revenue: number;
   overview: string;
   release_date: string;
-  genres: {id: number; name: string;}[];
+  genres: { id: number; name: string }[];
   runtime: number | null;
   title: string;
   id: number;
@@ -25,11 +25,24 @@ export interface IMoviesResults {
 }
 
 export interface IGenres {
-  genres: Array<{id: number; name: string}>
+  genres: Array<{ id: number; name: string }>;
 }
 
 export enum MoviesActionType {
   GET_CATEGORY = "GET_CATEGORY",
   SEARCH_MOVIES = "SEARCH_MOVIES",
   GET_MOVIE_DETAILS = "GET_MOVIE_DETAILS",
+  GET_MOVIE_ACTORS = "GET_MOVIE_ACTORS",
+}
+
+export interface IMovieActor {
+  id: number;
+  name: string;
+  profile_path: string | null;
+  character: string;
+}
+
+export interface IMovieState {
+  details: ImovieDetails;
+  actors: IMovieActor[];
 }
