@@ -19,8 +19,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ img, rating, title, genres, id })
         <img src={img} className={styles.image} alt={"film"} />
         <img src={icon} width='50px' className={styles.icon} alt={"icon"} />
       </div>
-      {title && <div>{title}</div>}
-      {genres && <div>{genres.join(" ")}</div>}
+      {title && <div className={styles.title}>{title}</div>}
+      {genres && <div className={styles.genres}>{genres.join(" ")}</div>}
     </Link>
   );
 };

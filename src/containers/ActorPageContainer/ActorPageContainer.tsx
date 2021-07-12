@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { getCurrentLang } from "../../hooks/language";
 import {
   getActorData,
   getActorPhotos,
@@ -32,11 +33,12 @@ const ActorPageContainer: React.FC<ActorPageContainerProps> = ({
   const actorKnownBy = useSelector((state: RootState) => state.actor.known_by);
 
   const { id }: any = useParams();
+  const lang = getCurrentLang();
 
   useEffect(() => {
-    dispatch(getActorData(id));
+    dispatch(getActorData(id, lang));
     dispatch(getActorPhotos(id));
-    dispatch(getKnownBy(id));
+    dispatch(getKnownBy(id, lang));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

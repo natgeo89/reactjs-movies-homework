@@ -26,10 +26,10 @@ export type ActorAction = IGetActorDataAction | IGetActorPhotosAction | IGetActo
 
 //get actor data
 
-export const getActorData = (id: number) => {
+export const getActorData = (id: number, lang: string) => {
   return async (dispatch: Dispatch<ActorAction>) => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=${lang}`
     );
     const actorData = await response.json();
     dispatch(getActorDataAction(actorData));
@@ -60,10 +60,10 @@ const getActorPhotosAction = (data: IActorPhotos): IGetActorPhotosAction => ({
 
 //get actor known_by films
 
-export const getKnownBy = (id: number) => {
+export const getKnownBy = (id: number, lang: string) => {
   return async (dispatch: Dispatch<ActorAction>) => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${API_KEY}&language=${lang}`
     );
     const knownBy = await response.json();
     dispatch(getActorKnownByAction(knownBy));

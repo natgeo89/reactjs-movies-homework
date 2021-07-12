@@ -7,6 +7,7 @@ import { RootState } from "../../store/reducers";
 import { fetchMovies, searchMovies } from "../../store/actions/moviesAction";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
+import { getCurrentLang } from "../../hooks/language";
 
 interface MainPageContainerProps {
   children(
@@ -27,6 +28,7 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
   const isQueryEmpty = (activeFilter === null && search === null && activePage === null);
 
   const history = useHistory();
+  const lang = getCurrentLang();
 
   //store
   const dispatch = useDispatch();
@@ -51,9 +53,9 @@ const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
     if (isQueryEmpty) return;
 
     if (search === null) {
-      dispatch(fetchMovies(activeFilter, activePage));
+      dispatch(fetchMovies(activeFilter, activePage, lang));
     } else {
-      dispatch(searchMovies(search, activePage));
+      dispatch(searchMovies(search, activePage, lang));
     }
   }, [activePage, search, activeFilter]);
 

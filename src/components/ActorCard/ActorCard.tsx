@@ -7,12 +7,9 @@ interface ActorCardProps {
   id: number;
   actorName: string;
   character: string;
-  // title?: string;
-  // genres?: string[] | any;
-  // rating: number;
 }
 
-const MovieCard: React.FC<ActorCardProps> = ({ img, id, actorName, character }) => {
+const ActorCard: React.FC<ActorCardProps> = ({ img, id, actorName, character }) => {
   return (
     <Link to={`/person/${id}`} className={styles.card_wrapper}>
       {/* <div className={styles.rating}>{rating}</div> */}
@@ -24,4 +21,4 @@ const MovieCard: React.FC<ActorCardProps> = ({ img, id, actorName, character }) 
     </Link>
   );
 };
-export default MovieCard;
+export default ActorCard;
