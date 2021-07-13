@@ -10,10 +10,11 @@ interface TabProps {
 
 const Tab: React.FC<TabProps> = ({ active, label, handleClick }) => {
   const tabClass = classNames(styles.tab, { [styles.active]: active });
+
   return (
-    <div className={tabClass} onClick={() => handleClick(label)}>
+    <li className={tabClass} onClick={() => handleClick(label)}>
       {label}
-    </div>
+    </li>
   );
 };
 

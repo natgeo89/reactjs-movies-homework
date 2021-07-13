@@ -1,26 +1,41 @@
-import React, { ReactElement} from "react";
-import { ImovieInfo } from "../../types/movie";
-
-import { movieInfo } from "../../__mocks__/movie.mock";
- 
+import React, { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { getCurrentLang } from "../../hooks/language";
+import { getActors, getMovieDetails } from "../../store/actions/movieActions";
+import { RootState } from "../../store/reducers";
+import { IMovieActor, ImovieDetails } from "../../types/movie";
 
 interface MoviePageContainerProps {
-  children(movieInfo: ImovieInfo, handleSearch: (query: string)=>any): ReactElement;
+  children(
+    movieDetails: ImovieDetails,
+    movieActors: IMovieActor[],
+    handleSearch: (query: string) => any
+  ): ReactElement;
 }
 
-const MoviePageContainer: React.FC<MoviePageContainerProps> = ({ children }) => {
-  // const [MovieData, setMovieData] = useState({});
-  // const MovieData = MovieData
+const MoviePageContainer: React.FC<MoviePageContainerProps> = ({
+  children,
+}) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const movieDetails = useSelector((state: RootState) => state.movie.details);
+  const movieActors = useSelector((state: RootState) => state.movie.actors);
 
-  // useEffect(async () => {
-  //   const MovieData = await fetchMovieData();
-  //   setMovieData(MovieData);
-  // }, []);
+  const { id }: any = useParams();
+  const lang = getCurrentLang();
+
+  useEffect(() => {
+    dispatch(getMovieDetails(id, lang));
+    dispatch(getActors(id, lang));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSearch = (query: string) => {
-    
-  }
+    history.push(`/?search=${query}&page=1`);
+  };
 
-  return children(movieInfo, handleSearch);
+  return children(movieDetails, movieActors, handleSearch);
 };
 
 export default MoviePageContainer;

@@ -1,4 +1,5 @@
-export const movieInfo = {
+
+export const movieDetailsMock = {
   adult: false,
   backdrop_path: "/ii8QGacT3MXESqBckQlyrATY0lT.jpg",
   belongs_to_collection: null,
@@ -56,3 +57,7 @@ export const movieInfo = {
   vote_average: 8.3,
   vote_count: 29313,
 };
+
+
+//actors
+//https://api.themoviedb.org/3/movie/27205/credits?api_key=231a9923e67455d132639e888240a6ae&language=en-US

@@ -4,7 +4,7 @@ import styles from "./Pagination.module.scss";
 
 interface PaginationProps {
   count: number;
-  activePage: number;
+  activePage: string | null;
   handlePaginationChange: (page: number) => any;
 }
 const Pagination: React.FC<PaginationProps> = ({ count, handlePaginationChange, activePage }) => {
@@ -12,16 +12,17 @@ const Pagination: React.FC<PaginationProps> = ({ count, handlePaginationChange, 
   const updateCount = (count > maxCount ) ? maxCount : count;
   const paginationArr = Array.from(Array(updateCount), (updateCount, ind) => ind + 1);
   
-  const handleClick = (activePage: number): void => {
-    handlePaginationChange(activePage);
+  const handleClick = (page: number): void => {
+    handlePaginationChange(page);
   };
   
+  // if pages less than 2, Pagination is unnecessary
   if (count < 2) return null;
   
   return (
     <ul className={styles.pagination}>
       {paginationArr.map((currentElem) => {
-        const isActiveElem = activePage === currentElem;
+        const isActiveElem = activePage === `${currentElem}`;
 
         const classes = classNames({
           [styles.elem]: true,

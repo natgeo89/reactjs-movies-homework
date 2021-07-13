@@ -1,26 +1,17 @@
-import React, { ReactElement} from "react";
-import { IGenres, IMovieCard } from "../../types/movie";
+import React, { ReactElement, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { getCurrentLang } from "../../hooks/language";
+import {
+  getActorData,
+  getActorPhotos,
+  getKnownBy,
+} from "../../store/actions/actorActions";
+import { RootState } from "../../store/reducers";
+import { IActorData, IActorPhotos, IKnownBy } from "../../types/actor";
+import { IGenres } from "../../types/movie";
 
-import { actorData, actorPhotos, known_by } from "../../__mocks__/actor.mock";
 import { genres } from "../../__mocks__/movies.mock";
-
-// import { useEffect } from "react";
-
-interface IActorData {
-  name: string;
-  birthday: string;
-  place_of_birth: string;
-  biography: string;
-  profile_path: string;
-}
-
-interface IActorPhotos {
-  profiles: Array<{ file_path: string }>;
-}
-
-interface IKnownBy {
-  cast: Array<IMovieCard>;
-}
 
 interface ActorPageContainerProps {
   children(
@@ -28,23 +19,34 @@ interface ActorPageContainerProps {
     actorPhotos: IActorPhotos,
     known_by: IKnownBy,
     genres: IGenres,
-    handleSearch: (query: string)=>any
+    handleSearch: (query: string) => any
   ): ReactElement;
 }
 
-const ActorPageContainer: React.FC<ActorPageContainerProps> = ({ children }) => {
-  // const [actorData, setActorData] = useState({});
-  // const actorData = actorData
+const ActorPageContainer: React.FC<ActorPageContainerProps> = ({
+  children,
+}) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const actorData = useSelector((state: RootState) => state.actor.data);
+  const actorPhotos = useSelector((state: RootState) => state.actor.photos);
+  const actorKnownBy = useSelector((state: RootState) => state.actor.known_by);
 
-  // useEffect(async () => {
-  //   const actorData = await fetchActorData();
-  //   setActorData(actorData);
-  // }, []);
+  const { id }: any = useParams();
+  const lang = getCurrentLang();
+
+  useEffect(() => {
+    dispatch(getActorData(id, lang));
+    dispatch(getActorPhotos(id));
+    dispatch(getKnownBy(id, lang));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSearch = (query: string) => {
-    
-  }
+    history.push(`/?search=${query}&page=1`);
+  };
 
-  return children(actorData, actorPhotos, known_by, genres, handleSearch);
+  return children(actorData, actorPhotos, actorKnownBy, genres, handleSearch);
 };
 
 export default ActorPageContainer;

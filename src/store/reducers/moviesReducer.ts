@@ -1,5 +1,5 @@
-import { IMoviesResults } from "../../types/movie";
-import { MovieAction, MoviesActionType } from "../actions/movies";
+import { IMoviesResults, MoviesActionType } from "../../types/movie";
+import { MovieAction } from "../actions/moviesAction";
 
 const initState = {
   page: 1,

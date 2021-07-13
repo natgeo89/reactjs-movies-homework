@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IMovieCard } from "../../types/movie";
-import { RootState } from "../../store";
+import { RootState } from "../../store/reducers";
 
-import {
-  fetchMovies,
-  searchMovies,
-} from "../../store/actions/movies";
+import { fetchMovies, searchMovies } from "../../store/actions/moviesAction";
+import { useHistory } from "react-router-dom";
+import { useQuery } from "../../hooks/useQuery";
+import { getCurrentLang } from "../../hooks/language";
 
 interface MainPageContainerProps {
   children(
@@ -15,70 +15,64 @@ interface MainPageContainerProps {
     handleTabClick: (tab: string) => any,
     handlePaginationChange: (page: number) => any,
     handleSearch: (query: string) => any,
-    isLoading: boolean,
     pages: number,
-    page: number,
+    page: string | null,
   ): ReactElement;
 }
 
 const MainPageContainer: React.FC<MainPageContainerProps> = ({ children }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [activeTab, setActiveTab] = useState("popular");
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  //queries
+  const activeFilter = useQuery("filter");
+  const activePage = useQuery("page");
+  const search = useQuery("search");
+  const isQueryEmpty = (activeFilter === null && search === null && activePage === null);
+
+  const history = useHistory();
+  const lang = getCurrentLang();
 
   //store
   const dispatch = useDispatch();
-  const movies = useSelector((state: RootState) => state.results);
-  const pages = useSelector((state: RootState) => state.total_pages);
-  const page = useSelector((state: RootState) => state.page);
+  const movies = useSelector((state: RootState) => state.movies.results);
+  const pages = useSelector((state: RootState) => state.movies.total_pages);
 
   const handleTabClick = (tab: string) => {
-    const updateTab = tab === "Top rated" ? "top_rated" : tab;
-    setActiveTab(updateTab.toLowerCase());
-    setCurrentPage(1);
-    setSearchQuery('');
+    const filter = tab.replace(/ /g, "_").toLowerCase();
+    history.push(`/?filter=${filter}&page=1`);
   };
 
   const handlePaginationChange = (page: number) => {
-    setCurrentPage(page);
+    const queryPart = (search === null) ? `filter=${activeFilter}` : `search=${search}`
+    history.push(`/?${queryPart}&page=${page}`);
   };
 
   const handleSearch = (query: string) => {
-    setSearchQuery(query);
+    history.push(`/?search=${query}&page=1`);
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    if (searchQuery === "") {      
-      dispatch(fetchMovies(activeTab, currentPage));
+    if (isQueryEmpty) return;
+
+    if (search === null) {
+      dispatch(fetchMovies(activeFilter, activePage, lang));
     } else {
-      setCurrentPage(1);
-      dispatch(searchMovies(searchQuery, currentPage));
+      dispatch(searchMovies(search, activePage, lang));
     }
-    setIsLoading(false);
-  }, [currentPage, searchQuery]);
+  }, [activePage, search, activeFilter]);
+
 
   useEffect(() => {
-    setIsLoading(true);
-    dispatch(fetchMovies(activeTab, currentPage));
-    setIsLoading(false);
+    if (isQueryEmpty) {
+      history.push("/?filter=popular&page=1");
+    }
   }, []);
-
-  useEffect(() => {
-    setIsLoading(true);
-    dispatch(fetchMovies(activeTab, currentPage));
-    setIsLoading(false);
-  }, [activeTab]);
 
   return children(
     movies,
     handleTabClick,
     handlePaginationChange,
     handleSearch,
-    isLoading, 
     pages,
-    page
+    activePage,
   );
 };
 
